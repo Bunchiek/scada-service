@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: scada-service
+
+app:
+  opc-server-address: "opc.tcp://127.0.0.1:49320"
