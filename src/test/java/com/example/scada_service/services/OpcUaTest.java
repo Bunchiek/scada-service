@@ -1,10 +1,27 @@
 package com.example.scada_service.services;
 
+import org.eclipse.milo.opcua.sdk.client.AddressSpace;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
+import org.eclipse.milo.opcua.sdk.client.nodes.UaNode;
+import org.eclipse.milo.opcua.stack.client.DiscoveryClient;
+import org.eclipse.milo.opcua.stack.core.BuiltinReferenceType;
+import org.eclipse.milo.opcua.stack.core.Identifiers;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
+import org.eclipse.milo.opcua.stack.core.types.enumerated.BrowseDirection;
+import org.eclipse.milo.opcua.stack.core.types.enumerated.BrowseResultMask;
+import org.eclipse.milo.opcua.stack.core.types.enumerated.NodeClass;
+import org.eclipse.milo.opcua.stack.core.types.structured.BrowseDescription;
+import org.eclipse.milo.opcua.stack.core.types.structured.BrowseResult;
+import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
+import org.eclipse.milo.opcua.stack.core.types.structured.ReferenceDescription;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint;
+
+@EnableScheduling
 public class OpcUaTest {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -22,6 +39,9 @@ public class OpcUaTest {
 
             // Вывод значения в консоль
             System.out.println("Значение узла " + nodeId + ": " + dataValue.getValue().getValue());
+
+            opcUaClientService.subscribeToTag(nodeId);
+
 
             // Отключение клиента после завершения работы
             client.disconnect().get();
