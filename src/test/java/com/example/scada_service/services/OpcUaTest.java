@@ -40,11 +40,10 @@ public class OpcUaTest {
             // Вывод значения в консоль
             System.out.println("Значение узла " + nodeId + ": " + dataValue.getValue().getValue());
 
-            opcUaClientService.subscribeToTag(nodeId);
-
 
             // Отключение клиента после завершения работы
             client.disconnect().get();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
