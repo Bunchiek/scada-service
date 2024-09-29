@@ -34,11 +34,14 @@ git clone https://github.com/Bunchiek/scada-service.git
 
 ### 2. Настройка переменных окружения
 
-Настройте Application.yml файл в корневой директории для указания переменных окружения для подключения к базе данных. И путь к тегам в OPC UA Server:
+Настройте Application.yml файл в корневой директории для указания переменных окружения для подключения к базе данных:
 ```bash
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 POSTGRES_DB=opcua_db
+```
+Настройте tags.yml для динамического добавления\удаления тегов из OPC сервера:
+```bash
 opcua:
   tags:
     - "Simulation Examples.Functions.Random1"
