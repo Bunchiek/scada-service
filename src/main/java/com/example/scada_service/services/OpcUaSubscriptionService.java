@@ -30,7 +30,7 @@ public class OpcUaSubscriptionService {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
         scheduler.scheduleAtFixedRate(() -> {
-            log.info("Приложение всё ещё работает, данные обновляются...");
+            log.info("Приложение всё ещё работает, данные обновляются... ");
         }, 0, 10, TimeUnit.SECONDS);
     }
 
